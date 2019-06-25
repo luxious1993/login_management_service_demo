@@ -12,4 +12,6 @@ http://localhost:8080/swagger-ui.html
 Any question about aws credential : 
 https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html
 
+Only finished Employee RESTful APIs, will do login_generator, login_validation, login_suggestion
+
 Author: liuxin
