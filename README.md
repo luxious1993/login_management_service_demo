@@ -6,7 +6,7 @@ Used spring boot + dynamodb + swagger
 
 Update your aws credential firstly and create dynamodb referred by com/luxious/lmsd/model/datastore
 
-start your app with swagger
+start your app and open swagger-ui
 http://localhost:8080/swagger-ui.html
 
 Any question about aws credential : 
