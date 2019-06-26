@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/employeeController")
@@ -30,7 +31,10 @@ public class EmployeeController {
 
     @PostMapping
     public EmployeeResponse createEmployee(@RequestBody final CreateEmployeeRequest request) {
-        final String employeeId = sanitizeId(request.getEmployeeId());
+        String employeeId = UUID.randomUUID().toString();
+        while (employeeDao.getEmployeeByEmployeeId(employeeId) != null) {
+            employeeId = UUID.randomUUID().toString();
+        }
         // TODO: validate login
         final String employeeLogin = request.getEmployeeLogin().trim().toLowerCase();
         final String name = request.getName().trim().toLowerCase();

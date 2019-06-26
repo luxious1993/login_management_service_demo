@@ -27,7 +27,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("RESTful APIs for Login Management")
-                .description("login management service")
+                .description("Author: liuxin")
                 .version("1.0")
                 .build();
     }
