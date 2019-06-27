@@ -5,9 +5,12 @@ Web application with RESTful APIs
 Implement EmployeeController: create/update/delete/get an employee
 
 Implement LoginAvailableController: getLoginAvailable 
-    make sure login unique in employee table
-    limit login length and combine with a-z and 0-9
-    ban illegal login with S3 bucket.
+
+     make sure login unique in employee table
+     
+     limit login length and combine with a-z and 0-9
+     
+     ban illegal login with S3 bucket
 
 Used Spring Boot + DynamoDB + Swagger
 Used DynamoDBMapper for data changes in table instead of Repository in spring (better for native aws operations)
