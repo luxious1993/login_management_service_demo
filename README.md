@@ -3,6 +3,7 @@
 Web application with RESTful APIs
 
 Implement EmployeeController: create/update/delete/get an employee
+
 Implement LoginAvailableController: getLoginAvailable 
     make sure login unique in employee table
     limit login length and combine with a-z and 0-9
