@@ -24,8 +24,7 @@ Using step:
     
 4. Start your app and open swagger-ui: http://localhost:8080/swagger-ui.html
    There will be serveral controllers:
-        Will Do: get a suggested login
-
+        
 Any question about aws credential : 
 https://docs.aws.amazon.com/zh_cn/amazondynamodb/latest/developerguide/SettingUp.DynamoWebService.html
 
