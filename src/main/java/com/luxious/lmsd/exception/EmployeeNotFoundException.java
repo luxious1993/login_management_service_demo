@@ -1,4 +1,4 @@
-package com.luxious.lmsd.Exception;
+package com.luxious.lmsd.exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
     public EmployeeNotFoundException(String message) {

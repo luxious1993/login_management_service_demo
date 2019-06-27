@@ -1,4 +1,4 @@
-package com.luxious.lmsd.model.service;
+package com.luxious.lmsd.model.interaction;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

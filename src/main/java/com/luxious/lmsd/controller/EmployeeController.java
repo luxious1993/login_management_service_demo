@@ -1,12 +1,13 @@
 package com.luxious.lmsd.controller;
 
-import com.luxious.lmsd.Exception.EmployeeIdAlreadyExistException;
-import com.luxious.lmsd.Exception.EmployeeNotFoundException;
+import com.luxious.lmsd.exception.EmployeeIdAlreadyExistException;
+import com.luxious.lmsd.exception.EmployeeNotFoundException;
 import com.luxious.lmsd.dao.EmployeeDao;
 import com.luxious.lmsd.model.datastore.Employee;
-import com.luxious.lmsd.model.service.CreateEmployeeRequest;
-import com.luxious.lmsd.model.service.EmployeeResponse;
-import com.luxious.lmsd.model.service.UpdateEmployeeRequest;
+import com.luxious.lmsd.model.interaction.CreateEmployeeRequest;
+import com.luxious.lmsd.model.interaction.EmployeeResponse;
+import com.luxious.lmsd.model.interaction.UpdateEmployeeRequest;
+import com.luxious.lmsd.utils.LoginAvailableHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ public class EmployeeController {
     private static final String EMPLOYEE_ID = "employeeId";
     @Autowired
     EmployeeDao employeeDao;
+    @Autowired
+    LoginAvailableHandler loginAvailableHandler;
 
     @GetMapping(value = "/{employeeId}")
     public EmployeeResponse getEmployeeByEmployeeId(@PathVariable(EMPLOYEE_ID) final String employeeId) {
@@ -35,8 +38,8 @@ public class EmployeeController {
         while (employeeDao.getEmployeeByEmployeeId(employeeId) != null) {
             employeeId = UUID.randomUUID().toString();
         }
-        // TODO: validate login
         final String employeeLogin = request.getEmployeeLogin().trim().toLowerCase();
+        validateLogin(employeeLogin);
         final String name = request.getName().trim().toLowerCase();
         final String email = request.getEmail().trim().toLowerCase();
         final Employee employee = new Employee(employeeId, employeeLogin, name, email);
@@ -86,5 +89,11 @@ public class EmployeeController {
             throw new NotFoundException(String.format("employeeId: %s is not exist", employeeId));
         }
         return employee;
+    }
+
+    private void validateLogin(final String employeeLogin) {
+        if (!loginAvailableHandler.isLoginValid(employeeLogin)) {
+            throw new BadRequestException(String.format("employeeLogin: %s is not available", employeeLogin));
+        }
     }
 }
